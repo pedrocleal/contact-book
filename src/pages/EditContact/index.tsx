@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Header } from "../../components/Header";
 
 interface Contact {
   id: number;
@@ -20,17 +21,20 @@ export default function EditContact() {
       setContact(data);
       setLoading(false);
     };
-    fetchContact();
+    fetchContact().catch(err => {
+      console.log(err)
+      setLoading(false)
+    });
   }, [id]);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <div>
-      <h1>Edit Contact</h1>
-      {/* <ContactForm contact={contact} /> */}
+      <Header />
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <h1>oi</h1>
+      )}
     </div>
   );
 };

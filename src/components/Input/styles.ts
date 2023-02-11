@@ -13,6 +13,9 @@ export const StyledInput = styled.input`
   padding: 0 12px;
   transition: all 0.3s;
 
+  display: flex;
+  align-items: center;
+
   &::placeholder {
     color: #ddd;
     opacity: 0.5;

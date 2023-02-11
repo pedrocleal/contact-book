@@ -1,60 +1,48 @@
+import { ArrowLeft } from "phosphor-react";
 import React, { useState, useEffect, useContext, useReducer } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { ContactForm } from "../../components/ContactForm";
+import { Header } from "../../components/Header";
 import { ContactsContext } from "../../contexts/ContactsContext";
+import { Container } from "./styles";
 
 interface Contact {
   id: number;
   name: string;
-  email: string;
   phone: string;
 }
 
 export default function CreateContact() {
   const [loading, setLoading] = useState(false);
   const { createContact } = useContext(ContactsContext);
-
-  const [formValues, setFormValues] = useState({
-    name: "",
-    phone: "",
-  })
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const navigate = useNavigate();
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
+  const handleSubmit = async (contact: Contact) => {
+    setIsSubmitting(true);
 
     createContact({
-      id: Math.random(),
-      name: formValues.name,
-      phone: formValues.phone,
+      id: Math.floor(Math.random() * 50),
+      name: contact.name,
+      phone: contact.phone,
     })
+
+    setIsSubmitting(false);
+    navigate('/')
   }
 
   return (
-    <div>
-      <h1>Adicionar novo contato</h1>
-      {/* <ContactForm contact={contact} /> */}
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="name">Nome</label>
-          <input type="text" id="name" name="name" onChange={(e) => setFormValues({
-            ...formValues,
-            name: e.target.value,
-          })} />
-        </div>
-
-        <div>
-          <label htmlFor="name">Telefone</label>
-          <input type="text" id="name" name="name" onChange={(e) => setFormValues({
-            ...formValues,
-            phone: e.target.value,
-          })} />
-        </div>
-
-        <button type="submit">Adicionar</button>
-      </form>
-    </div>
+    <Container>
+      <Header />
+      <Link to='/'>
+        <ArrowLeft />
+        <p>Voltar</p>
+      </Link>
+      <ContactForm isSubmitting={isSubmitting} onSubmit={handleSubmit} />
+    </Container>
   );
 };
