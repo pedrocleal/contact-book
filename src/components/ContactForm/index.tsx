@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { IContact } from '../../contexts/ContactsContext'
+import { formatPhone } from '../../utils/formatPhone';
 import { Button } from '../Button';
 import { Input } from '../Input';
 import { Container, Form, FormGroup } from './styles';
@@ -49,10 +50,15 @@ export function ContactForm({ onSubmit, isSubmitting }: IContactForm) {
             id="phone"
             name="phone"
             value={formValues.phone}
-            onChange={(e) => setFormValues({
-              ...formValues,
-              phone: e.target.value,
-            })}
+            maxLength={12}
+            onChange={(e) => {
+              const { value } = e.target;
+
+              setFormValues({
+                ...formValues,
+                phone: formatPhone(value.replace(/\D/g, '')),
+              })
+            }}
           />
         </FormGroup>
 
