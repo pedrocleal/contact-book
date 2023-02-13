@@ -5,6 +5,7 @@ import Routes from './Routes'
 import './App.css'
 
 import styled from 'styled-components'
+import { Toaster } from "react-hot-toast"
 
 const Container = styled.div`
   display: flex;
@@ -22,6 +23,9 @@ export default function App() {
     <BrowserRouter>
       <ContactsProvider>
         <Container>
+          <Toaster
+            position="bottom-center"
+          />
           <Routes />
         </Container>
       </ContactsProvider>

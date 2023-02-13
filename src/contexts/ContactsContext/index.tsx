@@ -9,7 +9,7 @@ export interface IContact {
 interface ContactsContextData {
   contacts: IContact[],
   createContact: (contact: IContact) => void
-  editContact: (id: number, updateContact: IContact) => void
+  editContact: (updateContact: IContact) => void
   deleteContact: (id: number) => void
 }
 
@@ -28,13 +28,16 @@ export default function ContactsProvider({ children }: React.PropsWithChildren) 
   });
 
   const createContact = (contact: IContact) => {
-    const newList = [...contacts, contact]
+    const newList = [contact, ...contacts]
     setContacts(newList)
     localStorage.setItem('@contacts', JSON.stringify(newList))
   }
 
-  const editContact = (id: number, updateContact: IContact) => {
-    const newList = contacts.map((contact: IContact) => contact.id === id ? updateContact : contact);
+  const editContact = (updateContact: IContact) => {
+    console.log({ updateContact })
+    const newList = contacts.map((contact: IContact) => contact.id === updateContact.id ? updateContact : contact);
+
+    console.log({ newList })
     setContacts(newList);
     localStorage.setItem('@contacts', JSON.stringify(newList));
   }

@@ -1,4 +1,13 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const spin = keyframes`
+  0% {
+    transform: rotate(0deg);
+  } 
+  100% {
+    transform: rotate(360deg);
+  }
+`
 
 export const Container = styled.div`
   display: flex;
@@ -31,10 +40,20 @@ export const FormGroup = styled.div`
   align-items: flex-start;
   gap: 4px;
   width: 100%;
+  position: relative;
 
   label {
     font-size: 16px;
     font-weight: 500;
     color: #fff;
   }
-`
+
+  svg {
+    position: absolute;
+    right: 8px;
+    top: 55%;
+    transform: translateY(-50%);
+    color: #9E55FC;
+    animation: ${spin} 0.8s linear infinite;
+  }
+`;

@@ -4,7 +4,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { ContactForm } from "../../components/ContactForm";
 import { Header } from "../../components/Header";
 import { ContactsContext } from "../../contexts/ContactsContext";
-import { Container } from "./styles";
+import { Container, HeaderContent, Subtitle, Title } from "./styles";
 
 interface Contact {
   id: number;
@@ -38,10 +38,18 @@ export default function CreateContact() {
   return (
     <Container>
       <Header />
-      <Link to='/'>
-        <ArrowLeft />
-        <p>Voltar</p>
-      </Link>
+      <HeaderContent>
+        <button className="back" onClick={() => navigate('/')}>
+          <ArrowLeft size={18} color='#9E55FC' />
+          <span>Voltar</span>
+        </button>
+
+        <Title>Criar novo contato</Title>
+        <Subtitle>Preencha o formulário.</Subtitle>
+      </HeaderContent>
+
+      <hr />
+
       <ContactForm isSubmitting={isSubmitting} onSubmit={handleSubmit} />
     </Container>
   );

@@ -1,30 +1,51 @@
-import { useState } from 'react';
+import { CircleNotch } from 'phosphor-react';
+import { useEffect, useState } from 'react';
 import { IContact } from '../../contexts/ContactsContext'
 import { formatPhone } from '../../utils/formatPhone';
 import { Button } from '../Button';
 import { Input } from '../Input';
+import { Loader } from '../Loader';
 import { Container, Form, FormGroup } from './styles';
 
 interface IContactForm {
   onSubmit: (data: IContact) => void;
   isSubmitting: boolean;
+  contact?: IContact | null;
+  isGettingContactData?: boolean;
 }
 
-export function ContactForm({ onSubmit, isSubmitting }: IContactForm) {
+export function ContactForm({
+  onSubmit,
+  isSubmitting,
+  contact,
+  isGettingContactData,
+}: IContactForm) {
+
   const [formValues, setFormValues] = useState({
-    name: "",
-    phone: "",
+    name: "" as string | undefined,
+    phone: "" as string | undefined,
   });
+
+  const populateForm = () => {
+    setFormValues({
+      name: contact?.name,
+      phone: contact?.phone,
+    })
+  }
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
     onSubmit({
-      id: Math.floor(Math.random() * 50),
-      name: formValues.name,
-      phone: formValues.phone,
+      id: contact?.id || Math.floor(Math.random() * 50),
+      name: formValues.name as string,
+      phone: formValues.phone as string,
     })
-  }
+  };
+
+  useEffect(() => {
+    populateForm();
+  }, [contact])
 
   return (
     <Container>
@@ -36,6 +57,7 @@ export function ContactForm({ onSubmit, isSubmitting }: IContactForm) {
             id="name"
             name="name"
             value={formValues.name}
+            disabled={isGettingContactData}
             onChange={(e) => setFormValues({
               ...formValues,
               name: e.target.value,
@@ -50,6 +72,7 @@ export function ContactForm({ onSubmit, isSubmitting }: IContactForm) {
             id="phone"
             name="phone"
             value={formValues.phone}
+            disabled={isGettingContactData}
             maxLength={12}
             onChange={(e) => {
               const { value } = e.target;
@@ -72,6 +95,8 @@ export function ContactForm({ onSubmit, isSubmitting }: IContactForm) {
         >
           {isSubmitting ? 'Salvando...' : 'Salvar'}
         </Button>
+
+        {isGettingContactData && <Loader isVisible={isGettingContactData} />}
       </Form>
     </Container>
   )

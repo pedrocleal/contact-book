@@ -21,7 +21,7 @@ export default function Home() {
   const navigate = useNavigate();
 
   const handleDelete = (id: number) => {
-    deleteContact(id)
+    deleteContact(id);
   }
 
   const filteredContacts = contacts.filter((contact) => {
@@ -53,7 +53,7 @@ export default function Home() {
 
       <ContactsList>
         {filteredContacts.map((contact) => (
-          <ContactBox>
+          <ContactBox key={contact.id}>
             <ContactInfo>
               <p>{contact.name}</p>
               <span>{contact.phone}</span>
