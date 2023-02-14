@@ -34,10 +34,7 @@ export default function ContactsProvider({ children }: React.PropsWithChildren) 
   }
 
   const editContact = (updateContact: IContact) => {
-    console.log({ updateContact })
     const newList = contacts.map((contact: IContact) => contact.id === updateContact.id ? updateContact : contact);
-
-    console.log({ newList })
     setContacts(newList);
     localStorage.setItem('@contacts', JSON.stringify(newList));
   }

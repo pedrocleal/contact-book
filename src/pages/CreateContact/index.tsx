@@ -1,9 +1,11 @@
 import { ArrowLeft } from "phosphor-react";
 import React, { useState, useEffect, useContext, useReducer } from "react";
+import { toast } from "react-hot-toast";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { ContactForm } from "../../components/ContactForm";
 import { Header } from "../../components/Header";
 import { ContactsContext } from "../../contexts/ContactsContext";
+import { delay } from "../../utils/delay";
 import { Container, HeaderContent, Subtitle, Title } from "./styles";
 
 interface Contact {
@@ -23,16 +25,21 @@ export default function CreateContact() {
   }
 
   const handleSubmit = async (contact: Contact) => {
-    setIsSubmitting(true);
-
-    createContact({
-      id: Math.floor(Math.random() * 50),
-      name: contact.name,
-      phone: contact.phone,
-    })
-
-    setIsSubmitting(false);
-    navigate('/')
+    try {
+      setIsSubmitting(true);
+      await delay(1000);
+      createContact({
+        id: Math.floor(Math.random() * 50),
+        name: contact.name,
+        phone: contact.phone,
+      })
+      toast.success('Contato editado com sucesso');
+      navigate('/')
+    } catch (error) {
+      toast.error('Erro ao editar o contato')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (

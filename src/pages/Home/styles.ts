@@ -107,7 +107,8 @@ export const ContactBox = styled.div`
 
   width: 100%;
   padding: 12px;
-  background-color: #383838;
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid #383838;
   border-radius: 4px;
   box-shadow: 0px 4px 10px 0px #FFFFFF0A;
 `

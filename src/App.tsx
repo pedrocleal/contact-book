@@ -25,6 +25,14 @@ export default function App() {
         <Container>
           <Toaster
             position="bottom-center"
+            toastOptions={{
+              style: {
+                background: 'rgba(0, 0, 0, 0.2)',
+                border: '1px solid #363636',
+                color: '#fff',
+                fontWeight: 500,
+              }
+            }}
           />
           <Routes />
         </Container>

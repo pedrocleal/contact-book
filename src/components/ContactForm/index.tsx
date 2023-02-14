@@ -89,7 +89,8 @@ export function ContactForm({
           type="submit"
           style={{
             width: '100%',
-            height: '40px'
+            height: '40px',
+            marginTop: '8px'
           }}
           disabled={formValues.name === '' || formValues.phone === ''}
         >
