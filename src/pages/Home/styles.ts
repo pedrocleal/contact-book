@@ -98,6 +98,9 @@ export const ContactsList = styled.div`
   margin-top: 24px;
   width: 100%;
   gap: 16px;
+
+  min-height: 300px;
+  overflow-y: auto;
 `
 
 export const ContactBox = styled.div`
@@ -141,10 +144,11 @@ export const ActionsContainer = styled.div`
 export const NoContacts = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
   gap: 16px;
-
+  
+  min-height: 300px;
   width: 100%;
 
   h3 {

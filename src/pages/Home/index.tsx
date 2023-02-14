@@ -54,7 +54,7 @@ export default function Home() {
               <MagnifyingGlass size={24} className='search-icon' color="#fff" />
               <HeaderActions>
                 <p>
-                  {contacts.length === 1 ? `${contacts.length} contact` : `${contacts.length} contacts`}
+                  {filteredContacts.length === 1 ? `${filteredContacts.length} contact` : `${filteredContacts.length} contacts`}
                 </p>
                 <Button
                   onClick={() => navigate(`/create`)}
@@ -66,25 +66,29 @@ export default function Home() {
             </HeaderContainer>
 
             <ContactsList>
-              {filteredContacts.map((contact) => (
-                <ContactBox key={contact.id}>
-                  <ContactInfo>
-                    <p>{contact.name}</p>
-                    <span>{contact.phone}</span>
-                  </ContactInfo>
-                  <ActionsContainer>
-                    <Link to={`/edit/${contact.id}`}>
-                      <Pencil color="#9B51E0" size={24} />
-                    </Link>
-                    <TrashSimple
-                      color="#D6014F"
-                      size={24}
-                      onClick={() => handleDelete(contact)}
-                      className='delete-icon'
-                    />
-                  </ActionsContainer>
-                </ContactBox>
-              ))}
+              {filteredContacts.length > 0 ? (
+                filteredContacts.map((contact) => (
+                  <ContactBox key={contact.id}>
+                    <ContactInfo>
+                      <p>{contact.name}</p>
+                      <span>{contact.phone}</span>
+                    </ContactInfo>
+                    <ActionsContainer>
+                      <Link to={`/edit/${contact.id}`}>
+                        <Pencil color="#9B51E0" size={24} />
+                      </Link>
+                      <TrashSimple
+                        color="#D6014F"
+                        size={24}
+                        onClick={() => handleDelete(contact)}
+                        className='delete-icon'
+                      />
+                    </ActionsContainer>
+                  </ContactBox>
+                ))
+              ) : (
+                <Title style={{ fontSize: '24px' }}>Sorry, no results found.</Title>
+              )}
             </ContactsList>
           </>
         ) : (
@@ -92,7 +96,7 @@ export default function Home() {
             <HeaderContainer>
               <HeaderActions>
                 <p>
-                  {contacts.length === 1 ? `${contacts.length} contact` : `${contacts.length} contacts`}
+                  {filteredContacts.length === 1 ? `${filteredContacts.length} contact` : `${filteredContacts.length} contacts`}
                 </p>
                 <Button
                   onClick={() => navigate(`/create`)}

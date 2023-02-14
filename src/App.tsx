@@ -6,6 +6,7 @@ import './App.css'
 
 import styled from 'styled-components'
 import { Toaster } from "react-hot-toast"
+import { Footer } from "./components/Footer"
 
 const Container = styled.div`
   display: flex;
@@ -16,6 +17,7 @@ const Container = styled.div`
   max-width: 500px;
   margin: 72px auto;
   padding: 0 16px;
+  position: relative;
 `
 
 export default function App() {
@@ -35,6 +37,7 @@ export default function App() {
             }}
           />
           <Routes />
+          <Footer />
         </Container>
       </ContactsProvider>
     </BrowserRouter>
