@@ -3,9 +3,9 @@ import { Container } from "./styles";
 export function Footer() {
   return (
     <Container>
-      <p>Developed by <a href="" />
+      <a href="https://pedroclealdev.netlify.app" target={"_blank"}>Developed by
         👨🏾‍💻
-      </p>
+      </a>
     </Container>
   )
 }

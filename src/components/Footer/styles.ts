@@ -7,8 +7,9 @@ export const Container = styled.div`
   justify-content: center;
   margin-top: 72px;
 
-  p {
+  a {
     color: #fff;
+    text-decoration: none;
     font-size: 14px;
     font-weight: 500;
   }
