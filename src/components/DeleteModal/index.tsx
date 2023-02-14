@@ -21,7 +21,10 @@ export function DeleteModal({ isVisible, contact, close }: IDeleteModalProps) {
         <h2>Remove {contact?.name}, from your contacts list?</h2>
         <div className="actions">
           <button className="cancel" onClick={() => close()}>Cancel</button>
-          <button className="remove" onClick={() => deleteContact(contact.id)}>Remove</button>
+          <button className="remove" onClick={() => {
+            deleteContact(contact.id)
+            close()
+          }}>Remove</button>
         </div>
       </Container>
     </Overlay>,

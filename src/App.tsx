@@ -14,7 +14,7 @@ const Container = styled.div`
   justify-content: center;
   width: 100%;
   max-width: 500px;
-  margin: auto;
+  margin: 72px auto;
   padding: 0 16px;
 `
 

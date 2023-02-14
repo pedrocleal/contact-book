@@ -6,7 +6,7 @@ import { DeleteModal } from "../../components/DeleteModal";
 import { Header } from "../../components/Header";
 import { Input } from "../../components/Input";
 import { ContactsContext, IContact } from "../../contexts/ContactsContext";
-import { ActionsContainer, ContactBox, ContactInfo, ContactsList, Container, HeaderContainer, HeaderActions, Title } from "./styles";
+import { ActionsContainer, ContactBox, ContactInfo, ContactsList, Container, HeaderContainer, HeaderActions, Title, NoContacts } from "./styles";
 
 interface Contact {
   id: number
@@ -42,47 +42,70 @@ export default function Home() {
 
       <Container>
         <Header />
-        <HeaderContainer>
-          <Input
-            placeholder="Search contacts"
-            value={search}
-            onChange={(event: any) => setSearch(event.target.value)}
-          />
-          <MagnifyingGlass size={24} className='search-icon' color="#fff" />
-          <HeaderActions>
-            <p>
-              {contacts.length === 1 ? `${contacts.length} contact` : `${contacts.length} contacts`}
-            </p>
-            <Button
-              onClick={() => navigate(`/create`)}
-            >
-              <Plus size={16} weight={"bold"} /> Add new
-            </Button>
-          </HeaderActions>
-          <hr />
-        </HeaderContainer>
 
-        <ContactsList>
-          {filteredContacts.map((contact) => (
-            <ContactBox key={contact.id}>
-              <ContactInfo>
-                <p>{contact.name}</p>
-                <span>{contact.phone}</span>
-              </ContactInfo>
-              <ActionsContainer>
-                <Link to={`/edit/${contact.id}`}>
-                  <Pencil color="#9B51E0" size={24} />
-                </Link>
-                <TrashSimple
-                  color="#D6014F"
-                  size={24}
-                  onClick={() => handleDelete(contact)}
-                  className='delete-icon'
-                />
-              </ActionsContainer>
-            </ContactBox>
-          ))}
-        </ContactsList>
+        {contacts.length > 0 ? (
+          <>
+            <HeaderContainer>
+              <Input
+                placeholder="Search contacts"
+                value={search}
+                onChange={(event: any) => setSearch(event.target.value)}
+              />
+              <MagnifyingGlass size={24} className='search-icon' color="#fff" />
+              <HeaderActions>
+                <p>
+                  {contacts.length === 1 ? `${contacts.length} contact` : `${contacts.length} contacts`}
+                </p>
+                <Button
+                  onClick={() => navigate(`/create`)}
+                >
+                  <Plus size={16} weight={"bold"} /> Add new
+                </Button>
+              </HeaderActions>
+              <hr />
+            </HeaderContainer>
+
+            <ContactsList>
+              {filteredContacts.map((contact) => (
+                <ContactBox key={contact.id}>
+                  <ContactInfo>
+                    <p>{contact.name}</p>
+                    <span>{contact.phone}</span>
+                  </ContactInfo>
+                  <ActionsContainer>
+                    <Link to={`/edit/${contact.id}`}>
+                      <Pencil color="#9B51E0" size={24} />
+                    </Link>
+                    <TrashSimple
+                      color="#D6014F"
+                      size={24}
+                      onClick={() => handleDelete(contact)}
+                      className='delete-icon'
+                    />
+                  </ActionsContainer>
+                </ContactBox>
+              ))}
+            </ContactsList>
+          </>
+        ) : (
+          <NoContacts>
+            <HeaderContainer>
+              <HeaderActions>
+                <p>
+                  {contacts.length === 1 ? `${contacts.length} contact` : `${contacts.length} contacts`}
+                </p>
+                <Button
+                  onClick={() => navigate(`/create`)}
+                >
+                  <Plus size={16} weight={"bold"} /> Add new
+                </Button>
+              </HeaderActions>
+              <hr />
+            </HeaderContainer>
+            <h3>You don't have any contacts yet.</h3>
+            <p>Click on the button below ☝🏾 to add your first contact.</p>
+          </NoContacts>
+        )}
       </Container>
     </>
   )

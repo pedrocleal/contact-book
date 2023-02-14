@@ -137,3 +137,24 @@ export const ActionsContainer = styled.div`
     cursor: pointer;
   }
 `
+
+export const NoContacts = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 16px;
+
+  width: 100%;
+
+  h3 {
+    color: #fff;
+    font-size: 22px;
+  }
+
+  p {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 400;
+  }
+`
