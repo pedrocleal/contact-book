@@ -33,7 +33,7 @@ export default function EditContact() {
 
       setContactToEdit(contact);
     } catch (error) {
-      toast.error('Erro ao carregar os dados do contato')
+      toast.error('Error loading contact details.')
     } finally {
       setIsGettingContactData(false)
     }
@@ -44,10 +44,10 @@ export default function EditContact() {
       setLoading(true);
       await delay(1000);
       editContact(data);
-      toast.success('Contato editado com sucesso');
+      toast.success('Contact edited successfully!');
       navigate('/')
     } catch (error) {
-      toast.error('Erro ao editar o contato')
+      toast.error('Error editing contact.')
     } finally {
       setLoading(false)
     }
@@ -63,11 +63,11 @@ export default function EditContact() {
       <HeaderContent>
         <button className="back" onClick={() => navigate('/')}>
           <ArrowLeft size={18} color='#9E55FC' />
-          <span>Voltar</span>
+          <span>Back</span>
         </button>
 
-        <Title>Editar contato</Title>
-        <Subtitle>Edite os dados do contato selecionado.</Subtitle>
+        <Title>Edit contact</Title>
+        <Subtitle>Edit the selected contact details.</Subtitle>
       </HeaderContent>
 
       <hr />

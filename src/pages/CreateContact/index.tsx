@@ -33,10 +33,10 @@ export default function CreateContact() {
         name: contact.name,
         phone: contact.phone,
       })
-      toast.success('Contato editado com sucesso');
+      toast.success('Contact successfully created!');
       navigate('/')
     } catch (error) {
-      toast.error('Erro ao editar o contato')
+      toast.error('Error creating new contact.')
     } finally {
       setIsSubmitting(false)
     }
@@ -48,11 +48,11 @@ export default function CreateContact() {
       <HeaderContent>
         <button className="back" onClick={() => navigate('/')}>
           <ArrowLeft size={18} color='#9E55FC' />
-          <span>Voltar</span>
+          <span>Back</span>
         </button>
 
-        <Title>Criar novo contato</Title>
-        <Subtitle>Preencha o formulário.</Subtitle>
+        <Title>Create new contact</Title>
+        <Subtitle>Fill up the form.</Subtitle>
       </HeaderContent>
 
       <hr />

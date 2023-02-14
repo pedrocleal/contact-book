@@ -51,7 +51,7 @@ export function ContactForm({
     <Container>
       <Form onSubmit={handleSubmit}>
         <FormGroup>
-          <label htmlFor="name">Nome</label>
+          <label htmlFor="name">Name</label>
           <Input
             type="text"
             id="name"
@@ -66,7 +66,7 @@ export function ContactForm({
         </FormGroup>
 
         <FormGroup>
-          <label htmlFor="phone">Telefone</label>
+          <label htmlFor="phone">Phone</label>
           <Input
             type="tel"
             id="phone"
@@ -94,7 +94,7 @@ export function ContactForm({
           }}
           disabled={formValues.name === '' || formValues.phone === ''}
         >
-          {isSubmitting ? 'Salvando...' : 'Salvar'}
+          {isSubmitting ? 'Saving...' : 'Save'}
         </Button>
 
         {isGettingContactData && <Loader isVisible={isGettingContactData} />}

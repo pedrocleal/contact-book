@@ -44,19 +44,19 @@ export default function Home() {
         <Header />
         <HeaderContainer>
           <Input
-            placeholder="Pesquisar contatos"
+            placeholder="Search contacts"
             value={search}
             onChange={(event: any) => setSearch(event.target.value)}
           />
           <MagnifyingGlass size={24} className='search-icon' color="#fff" />
           <HeaderActions>
             <p>
-              {contacts.length === 1 ? `${contacts.length} contato` : `${contacts.length} contatos`}
+              {contacts.length === 1 ? `${contacts.length} contact` : `${contacts.length} contacts`}
             </p>
             <Button
               onClick={() => navigate(`/create`)}
             >
-              <Plus size={16} weight={"bold"} /> Adicionar
+              <Plus size={16} weight={"bold"} /> Add new
             </Button>
           </HeaderActions>
           <hr />
