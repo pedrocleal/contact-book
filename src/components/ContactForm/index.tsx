@@ -1,5 +1,6 @@
 import { CircleNotch } from 'phosphor-react';
 import { useEffect, useState } from 'react';
+import { toast } from 'react-hot-toast';
 import { IContact } from '../../contexts/ContactsContext'
 import { formatPhone } from '../../utils/formatPhone';
 import { Button } from '../Button';
@@ -36,6 +37,11 @@ export function ContactForm({
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
+    if (formValues.name === '' || formValues.phone === '') {
+      toast.error('Please fill all fields');
+      return;
+    }
+
     onSubmit({
       id: contact?.id || Math.floor(Math.random() * 50),
       name: formValues.name as string,
@@ -46,6 +52,8 @@ export function ContactForm({
   useEffect(() => {
     populateForm();
   }, [contact])
+
+  console.log({ formValues });
 
   return (
     <Container>
@@ -92,7 +100,7 @@ export function ContactForm({
             height: '40px',
             marginTop: '8px'
           }}
-          disabled={formValues.name === '' || formValues.phone === ''}
+          disabled={!formValues.name || !formValues.phone}
         >
           {isSubmitting ? 'Saving...' : 'Save'}
         </Button>

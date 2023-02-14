@@ -29,7 +29,7 @@ export default function Home() {
   }
 
   const filteredContacts = contacts.filter((contact) => {
-    return contact.name.toLowerCase().includes(search.toLowerCase())
+    return contact?.name?.toLowerCase().includes(search.toLowerCase())
   })
 
   return (
