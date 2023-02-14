@@ -11,7 +11,6 @@ export const HeaderContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 50px;
   width: 100%;
   position: relative;
 
@@ -150,6 +149,8 @@ export const NoContacts = styled.div`
   
   min-height: 300px;
   width: 100%;
+
+  text-align: center;
 
   h3 {
     color: #fff;
